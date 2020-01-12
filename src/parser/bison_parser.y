@@ -107,10 +107,11 @@ int yyerror(YYLTYPE* llocp, SQLParserResult* result, yyscan_t scanner, const cha
 	hsql::InsertStatement* 	insert_stmt;
 	hsql::DeleteStatement* 	delete_stmt;
 	hsql::UpdateStatement* 	update_stmt;
-	hsql::DropStatement*   	drop_stmt;
+	hsql::DropStatement*  drop_stmt;
 	hsql::PrepareStatement* prep_stmt;
 	hsql::ExecuteStatement* exec_stmt;
-	hsql::ShowStatement*    show_stmt;
+	hsql::ShowStatement*  show_stmt;
+	hsql::UseStatement*  use_stmt;
 
 	hsql::TableName table_name;
 	hsql::TableRef* table;
@@ -180,6 +181,7 @@ int yyerror(YYLTYPE* llocp, SQLParserResult* result, yyscan_t scanner, const cha
 %token NOT OFF SET TOP AS BY IF IN IS OF ON OR TO
 %token ARRAY CONCAT ILIKE SECOND MINUTE HOUR DAY MONTH YEAR
 %token TRUE FALSE
+%token USE
 
 /*********************************
  ** Non-Terminal types (http://www.gnu.org/software/bison/manual/html_node/Type-Decl.html)
@@ -197,6 +199,7 @@ int yyerror(YYLTYPE* llocp, SQLParserResult* result, yyscan_t scanner, const cha
 %type <update_stmt>     update_statement
 %type <drop_stmt>	    drop_statement
 %type <show_stmt>	    show_statement
+%type <use_stmt>	    use_statement
 %type <table_name>      table_name
 %type <sval> 		    file_path prepare_target_query
 %type <bval> 		    opt_not_exists opt_exists opt_distinct opt_column_nullable
@@ -310,10 +313,13 @@ statement:
 		}
 	|	import_statement {
 			$$ = $1;
-		 }
+		}
 	|	export_statement {
 			$$ = $1;
-		 }
+		}
+	|   use_statement {
+			$$ = $1;
+	    }
 	;
 
 
@@ -466,6 +472,16 @@ show_statement:
 		}
 	;
 
+/******************************
+ * Use Statement
+ * USE database;
+ ******************************/
+use_statement:
+		USE IDENTIFIER {
+			$$ = new UseStatement();
+			$$->name = $2;
+		}
+	;
 
 /******************************
  * Create Statement

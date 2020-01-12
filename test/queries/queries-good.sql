@@ -1,4 +1,4 @@
-# This file contains a list of strings that are NOT valid SQL queries.
+# This file contains a list of strings that are valid SQL queries.
 # Each line contains a single SQL query.
 # SELECT statement
 SELECT * FROM orders;
@@ -72,3 +72,5 @@ SELECT * FROM test WITH HINT(NO_CACHE, SAMPLE_RATE(0.1), OMW(1.0, 'test'));
 SHOW TABLES;
 SHOW COLUMNS students;
 DESCRIBE students;
+# USE
+USE test;

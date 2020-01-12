@@ -192,7 +192,7 @@ namespace hsql {
     }
   }
 
-  // ShowStatament
+  // ShowStatement
   ShowStatement::ShowStatement(ShowType type) :
     SQLStatement(kStmtShow),
     type(type),
@@ -201,6 +201,15 @@ namespace hsql {
 
   ShowStatement::~ShowStatement() {
     free(schema);
+    free(name);
+  }
+
+  // UseStatement
+  UseStatement::UseStatement() :
+    SQLStatement(kStmtUse),
+    name(nullptr) {}
+
+  UseStatement::~UseStatement() {
     free(name);
   }
 

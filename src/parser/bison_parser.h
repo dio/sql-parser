@@ -1,4 +1,4 @@
-/* A Bison parser, made by GNU Bison 3.4.1.  */
+/* A Bison parser, made by GNU Bison 3.5.  */
 
 /* Bison interface for Yacc-like parsers in C
 
@@ -218,14 +218,15 @@ extern int hsql_debug;
     SQL_YEAR = 390,
     SQL_TRUE = 391,
     SQL_FALSE = 392,
-    SQL_EQUALS = 393,
-    SQL_NOTEQUALS = 394,
-    SQL_LESS = 395,
-    SQL_GREATER = 396,
-    SQL_LESSEQ = 397,
-    SQL_GREATEREQ = 398,
-    SQL_NOTNULL = 399,
-    SQL_UMINUS = 400
+    SQL_USE = 393,
+    SQL_EQUALS = 394,
+    SQL_NOTEQUALS = 395,
+    SQL_LESS = 396,
+    SQL_GREATER = 397,
+    SQL_LESSEQ = 398,
+    SQL_GREATEREQ = 399,
+    SQL_NOTNULL = 400,
+    SQL_UMINUS = 401
   };
 #endif
 
@@ -249,10 +250,11 @@ union HSQL_STYPE
 	hsql::InsertStatement* 	insert_stmt;
 	hsql::DeleteStatement* 	delete_stmt;
 	hsql::UpdateStatement* 	update_stmt;
-	hsql::DropStatement*   	drop_stmt;
+	hsql::DropStatement*  drop_stmt;
 	hsql::PrepareStatement* prep_stmt;
 	hsql::ExecuteStatement* exec_stmt;
-	hsql::ShowStatement*    show_stmt;
+	hsql::ShowStatement*  show_stmt;
+	hsql::UseStatement*  use_stmt;
 
 	hsql::TableName table_name;
 	hsql::TableRef* table;
@@ -279,7 +281,7 @@ union HSQL_STYPE
 	std::vector<hsql::OrderDescription*>* order_vec;
 	std::vector<hsql::WithDescription*>* with_description_vec;
 
-#line 283 "bison_parser.h"
+#line 285 "bison_parser.h"
 
 };
 typedef union HSQL_STYPE HSQL_STYPE;

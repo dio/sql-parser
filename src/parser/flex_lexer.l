@@ -191,6 +191,7 @@ MONTH       TOKEN(MONTH)
 YEAR        TOKEN(YEAR)
 TRUE		TOKEN(TRUE)
 FALSE		TOKEN(FALSE)
+USE			TOKEN(USE)
 
                 /* Allow =/== see https://sqlite.org/lang_expr.html#collateop */
 "=="		TOKEN(EQUALS)
